@@ -6,7 +6,7 @@ public class Gugudan {
         for(int i=num1; i<=num2; i++){
             System.out.println(i + "단을 출력합니다");
             for(int j=1; j<10; j++){
-                System.out.println(i + " * " + j + " = " + i*j);
+                System.out.printf("%d * %d = %d\n", i, j, i * j);
                 System.out.println();
             }
             System.out.println();
