@@ -21,6 +21,7 @@ public class GetRandomMember {
                 System.out.print(", ");
             }
         }
+        sc.close();
     }
 
     public static void main(String[] args) {
