@@ -4,12 +4,14 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class GetRandomMember {
+    Random rd = new Random();
+    Scanner sc = new Scanner(System.in);
+
     public static final String[] MEMBER = {"BC", "호두마루", "DAVE", "Barney", "meatsby", "mong",
             "Jun", "Phil", "Dike", "Jhin", "OS"};
 
     public void printMember() {
-        Random rd = new Random();
-        Scanner sc = new Scanner(System.in);
+
         System.out.print("몇 명인가요? ");
         int n = sc.nextInt();
         for (int i = 0; i < n; i++) {
