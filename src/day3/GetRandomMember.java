@@ -8,7 +8,11 @@ public class GetRandomMember {
     public void printMember(Random rd, String[] member, int n){
         for(int i=0; i<n; i++){
             int x = rd.nextInt(member.length);
-            System.out.print(member[x] +", ");
+            System.out.print(member[x]);
+            if(i < n-1){
+                System.out.print(", ");
+            }
+
         }
     }
 
