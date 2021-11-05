@@ -1,3 +1,5 @@
+package day1;
+
 import java.util.Scanner;
 
 public class Gugudan {
@@ -12,7 +14,7 @@ public class Gugudan {
         }
     }
 
-    private void runprompt() {
+    private void runPrompt() {
         Scanner sc = new Scanner(System.in);
         System.out.println("구구단을 외자");
         System.out.println("첫단과 끝단을 입력하세요");
@@ -26,7 +28,7 @@ public class Gugudan {
 
     public static void main(String[] args) {
         Gugudan gu = new Gugudan();
-        gu.runprompt();
+        gu.runPrompt();
 
     }
 }
