@@ -1,22 +1,20 @@
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Gugudan {
-    private static void printGugudan(int num1, int num2) {
-        for(int i=num1; i<=num2; i++){
+    private void printGugudan(int num1, int num2) {
+        for (int i = num1; i <= num2; i++) {
             System.out.println(i + "단을 출력합니다");
-            for(int j=1; j<10; j++){
+            for (int j = 1; j < 10; j++) {
                 System.out.printf("%d * %d = %d\n", i, j, i * j);
                 System.out.println();
             }
             System.out.println();
         }
     }
-    public static void main(String[] args) {
-        System.out.println("구구단을 외자");
 
+    private void runprompt() {
         Scanner sc = new Scanner(System.in);
-
+        System.out.println("구구단을 외자");
         System.out.println("첫단과 끝단을 입력하세요");
         int num1 = sc.nextInt();
         int num2 = sc.nextInt();
@@ -24,10 +22,11 @@ public class Gugudan {
 
         printGugudan(num1, num2);
         sc.close();
-
-
     }
 
+    public static void main(String[] args) {
+        Gugudan gu = new Gugudan();
+        gu.runprompt();
 
-
+    }
 }
