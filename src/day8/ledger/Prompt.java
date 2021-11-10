@@ -23,13 +23,35 @@ public class Prompt {
 
         user.put(name, pw);
         InputData();
+        updateData();
         printData();
+    }
+
+    private void updateData() {
+        accInfo = new AccountInfo();
+        System.out.print("수정할 순번 : ");
+        int n = sc.nextInt();
+
+        sc.nextLine();
+        System.out.println("---- 수정 ----");
+        System.out.print("날짜 : ");
+        accInfo.inputDate = sc.nextLine();
+        System.out.print("내용 : ");
+        accInfo.description = sc.nextLine();
+        System.out.print("수입 : ");
+        accInfo.income = sc.nextInt();
+        System.out.print("지출 : ");
+        accInfo.outcome = sc.nextInt();
+
+        acc.set(n, accInfo);
     }
 
     private void printData() {
         for (int i=0; i < acc.size(); i++){
             accInfo = acc.get(i);
 
+
+            System.out.println("---- 출력 ----");
             System.out.println(accInfo.inputDate);
             System.out.println(accInfo.description);
             System.out.println(accInfo.income);
@@ -41,6 +63,7 @@ public class Prompt {
         accInfo = new AccountInfo();
         sc.nextLine();
 
+        System.out.println("---- 입력 ----");
         System.out.print("날짜 : ");
         accInfo.inputDate = sc.nextLine();
         System.out.print("내용 : ");
