@@ -148,6 +148,30 @@ public class HangulClock {
     }
 
     private void putHangulMinuteTen() {
+        switch (minuteTen) {
+            case 0:
+                break;
+            case 1:
+                hangulClockForm[3][5] = hangulForm[3][5]; //십
+                break;
+            case 2:
+                hangulClockForm[3][1] = hangulForm[3][1];
+                hangulClockForm[3][5] = hangulForm[3][5];
+                break;
+            case 3:
+                hangulClockForm[3][2] = hangulForm[3][2];
+                hangulClockForm[3][5] = hangulForm[3][5];
+                break;
+            case 4:
+                hangulClockForm[3][3] = hangulForm[3][3];
+                hangulClockForm[3][5] = hangulForm[3][5];
+                break;
+            case 5:
+                hangulClockForm[3][4] = hangulForm[3][4];
+                hangulClockForm[3][5] = hangulForm[3][5];
+                break;
+
+        }
     }
 
     private void putHangulMinuteOne() {
