@@ -1,31 +1,19 @@
 package week3.hangulClock;
 
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.Formatter;
-import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class HangulClock {
-    LocalTime now = LocalTime.now();
-    int hour = now.getHour();
-    int minute = now.getMinute();
-    int minuteTotal = now.getMinute();
-    int minuteTen = 0;
-    int minuteOne = 0;
+    LocalTime now;
+    int hour;
+    int minute;
+    int minuteTotal;
+    int minuteTen;
+    int minuteOne;
+    String[][] hangulClockForm;
     String[][] hangulForm = createHangulForm();
 
-    String[][] hangulClockForm;
-
-
-    private void printBackground(String[][] map) {
-        for (int i = 0; i < map.length; i++) {
-            for (int j = 0; j < map[0].length; j++) {
-                System.out.print(map[i][j] + " ");
-            }
-            System.out.println();
-        }
-    }
 
     private String[][] createBackground() {        // 한글시계의 배경 아치원 배열 구현 6 x 6
         String[][] background = new String[6][6];
@@ -42,15 +30,16 @@ public class HangulClock {
                 "한 두 세 네 다 섯".split(" "),
                 "여 섯 일 곱 여 덟".split(" "),
                 "아 홉 열 한 두 시".split(" "),
-                "자 이 삼 사 오 심".split(" "),
+                "자 이 삼 사 오 십".split(" "),
                 "정 일 이 삼 사 육".split(" "),
                 "오 오 칠 팔 구 분".split(" ")
         };
         return hangulForm;
     }
 
-    public void run() {
-        // minuteTotal을 십의 자리와 일의 자리로 분리
+    void runClock() {
+        getCurrentTime();
+
         if (minuteTotal < 10) {
             minuteTen = 0;
             minuteOne = minuteTotal;
@@ -75,7 +64,34 @@ public class HangulClock {
             putHangulMinuteOne();
         }
         printHangulClock(hangulClockForm);
-    } // run
+
+    }
+
+    public void runTimer() {
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                runClock();
+
+            }
+        };
+
+        Timer timer = new Timer();
+        long delay = 0;
+        long intervalPeriod = 5000;
+
+        timer.scheduleAtFixedRate(task, delay, intervalPeriod);
+
+    }
+
+    private void getCurrentTime() {
+        now = LocalTime.now();
+        hour = now.getHour();
+        minute = now.getMinute();
+        minuteTotal = now.getMinute();
+        minuteTen = 0;
+        minuteOne = 0;
+    }
 
     private void printHangulClock(String[][] hangulClockForm) {
         for (int i = 0; i < hangulClockForm.length; i++) {
@@ -139,7 +155,7 @@ public class HangulClock {
                 hangulClockForm[2][3] = hangulForm[2][3]; //한
                 break;
             case 12:
-            case 00:
+            case 0:
                 hangulClockForm[2][2] = hangulForm[2][2]; //열
                 hangulClockForm[2][4] = hangulForm[2][4]; //두
                 break;
@@ -175,6 +191,46 @@ public class HangulClock {
     }
 
     private void putHangulMinuteOne() {
+        switch (minuteOne) {
+            case 0:
+                break;
+            case 1:
+                hangulClockForm[4][1] = hangulForm[4][1];
+                hangulClockForm[5][5] = hangulForm[5][5]; //분
+                break;
+            case 2:
+                hangulClockForm[4][2] = hangulForm[4][2];
+                hangulClockForm[5][5] = hangulForm[5][5]; //분
+                break;
+            case 3:
+                hangulClockForm[4][3] = hangulForm[4][3];
+                hangulClockForm[5][5] = hangulForm[5][5]; //분
+                break;
+            case 4:
+                hangulClockForm[4][4] = hangulForm[4][4];
+                hangulClockForm[5][5] = hangulForm[5][5]; //분
+                break;
+            case 5:
+                hangulClockForm[5][1] = hangulForm[5][1];
+                hangulClockForm[5][5] = hangulForm[5][5]; //분
+                break;
+            case 6:
+                hangulClockForm[4][5] = hangulForm[4][5];
+                hangulClockForm[5][5] = hangulForm[5][5]; //분
+                break;
+            case 7:
+                hangulClockForm[5][2] = hangulForm[5][2];
+                hangulClockForm[5][5] = hangulForm[5][5]; //분
+                break;
+            case 8:
+                hangulClockForm[5][3] = hangulForm[5][3];
+                hangulClockForm[5][5] = hangulForm[5][5]; //분
+                break;
+            case 9:
+                hangulClockForm[5][4] = hangulForm[5][4];
+                hangulClockForm[5][5] = hangulForm[5][5]; //분
+                break;
+        }
     }
 
 
