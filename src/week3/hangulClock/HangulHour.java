@@ -19,7 +19,7 @@ public enum HangulHour {
     ELEVEN_YEOL(11, 2, 2),
     ELEVEN_HAN(11, 2, 3),
     TWELVE_YEOL(11, 2, 2),
-    TWELVE_DOOL(11, 2, 4);
+    TWELVE_DOOL(12, 2, 4);
 
     private final int hour;
     private final int row;

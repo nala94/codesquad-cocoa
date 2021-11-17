@@ -11,7 +11,7 @@ public class HangulClock {
     int minuteTotal;
     int minuteTen;
     int minuteOne;
-    String[][] hangulClockForm;
+    String[][] hangulClock;
     String[][] hangulForm = createHangulForm();
 
 
@@ -36,26 +36,26 @@ public class HangulClock {
             minuteTen = 0;
             minuteOne = minuteTotal;
         } else {
-            minuteTen = minuteTotal / 10;
+            minuteTen = (minuteTotal / 10) * 10;
             minuteOne = minuteTotal % 10;
         }
 
-        hangulClockForm = createBackground();
+        hangulClock = createBackground();
 
         if (hour == 0 && minute == 0) {
             // 배경에 자, 정을 출력
-            hangulClockForm[3][0] = hangulForm[3][0];
-            hangulClockForm[4][0] = hangulForm[4][0];
+            hangulClock[3][0] = hangulForm[3][0];
+            hangulClock[4][0] = hangulForm[4][0];
         } else if (hour == 12 && minute == 0) {
             // 배경에 정, 오를 출력
-            hangulClockForm[4][0] = hangulForm[4][0];
-            hangulClockForm[5][0] = hangulForm[5][0];
+            hangulClock[4][0] = hangulForm[4][0];
+            hangulClock[5][0] = hangulForm[5][0];
         } else {
-            p.putHangulHour(hangulClockForm, hangulForm, hour);
-            p.putHangulMinuteTen(hangulClockForm, hangulForm, minuteTen);
-            p.putHangulMinuteOne(hangulClockForm, hangulForm, minuteOne);
+            p.putHangulHour(hangulClock, hangulForm, hour);
+            p.putHangulMinuteTen(hangulClock, hangulForm, minuteTen);
+            p.putHangulMinuteOne(hangulClock, hangulForm, minuteOne);
         }
-        printHangulClock(hangulClockForm);
+        printHangulClock(hangulClock);
         System.out.println();
         System.out.println();
         System.out.println();
@@ -100,8 +100,5 @@ public class HangulClock {
             System.out.println();
         }
     }
-
-
-
 
 }
