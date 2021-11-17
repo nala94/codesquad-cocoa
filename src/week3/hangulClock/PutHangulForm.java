@@ -3,6 +3,7 @@ package week3.hangulClock;
 public class PutHangulForm {
 
     void putHangulHour(String[][] hangulClock, String[][] hangulForm, int hour) {
+        hour = hour % 12;
         for (HangulHour h : HangulHour.values()) {
             if (hour == h.getHour()) {
                 hangulClock[h.getRow()][h.getColumn()] = hangulForm[h.getRow()][h.getColumn()];
@@ -26,7 +27,7 @@ public class PutHangulForm {
 
     void putHangulMinuteOne(String[][] hangulClock, String[][] hangulForm, int minute) {
         int minuteOne = minute % 10;
-        if (minuteOne == 0) {
+        if (minute == 0) {
             return;
         }
         for (HangulMinute hm : HangulMinute.values()) {

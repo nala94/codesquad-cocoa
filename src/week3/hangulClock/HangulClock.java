@@ -21,7 +21,7 @@ public class HangulClock {
         };
         Timer timer = new Timer();
         long delay = 0;
-        long intervalPeriod = 5000;
+        long intervalPeriod = 50000;
         timer.scheduleAtFixedRate(task, delay, intervalPeriod);
     }
 
@@ -77,13 +77,16 @@ public class HangulClock {
         minute = now.getMinute();
     }
 
-    private void printHangulClock(String[][] hangulClockForm) {
-        for (int i = 0; i < hangulClockForm.length; i++) {
-            for (int j = 0; j < hangulClockForm[0].length; j++) {
-                System.out.print(hangulClockForm[i][j] + " ");
+    private void printHangulClock(String[][] hangulClock) {
+        for (int i = 0; i < hangulClock.length; i++) {
+            for (int j = 0; j < hangulClock[0].length; j++) {
+                System.out.print(hangulClock[i][j] + " ");
             }
             System.out.println();
         }
+        System.out.println();
+        System.out.println();
+        System.out.println();
     }
 
 }
