@@ -11,7 +11,8 @@ public class PutHangulForm {
         hangulClock[2][5] = hangulForm[2][5];
     }
 
-    void putHangulMinuteTen(String[][] hangulClock, String[][] hangulForm, int minuteTen) {
+    void putHangulMinuteTen(String[][] hangulClock, String[][] hangulForm, int minute) {
+        int minuteTen = minute - (minute % 10);
         if (minuteTen == 0) {
             return;
         }
@@ -23,7 +24,8 @@ public class PutHangulForm {
         hangulClock[3][5] = hangulForm[3][5]; // 십
     }
 
-    void putHangulMinuteOne(String[][] hangulClock, String[][] hangulForm, int minuteOne) {
+    void putHangulMinuteOne(String[][] hangulClock, String[][] hangulForm, int minute) {
+        int minuteOne = minute % 10;
         if (minuteOne == 0) {
             return;
         }

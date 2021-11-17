@@ -8,9 +8,6 @@ public class HangulClock {
     LocalTime now;
     int hour;
     int minute;
-    int minuteTotal;
-    int minuteTen;
-    int minuteOne;
     String[][] hangulClock;
     String[][] hangulForm = createHangulForm();
 
@@ -29,19 +26,14 @@ public class HangulClock {
     }
 
     void runClock() {
-        PutHangulForm p = new PutHangulForm();
-
         getCurrentTime();
-        if (minuteTotal < 10) {
-            minuteTen = 0;
-            minuteOne = minuteTotal;
-        } else {
-            minuteTen = (minuteTotal / 10) * 10;
-            minuteOne = minuteTotal % 10;
-        }
-
         hangulClock = createBackground();
+        createHangulClock();
+        printHangulClock(hangulClock);
+    }
 
+    private void createHangulClock() {
+        PutHangulForm p = new PutHangulForm();
         if (hour == 0 && minute == 0) {
             // 배경에 자, 정을 출력
             hangulClock[3][0] = hangulForm[3][0];
@@ -52,13 +44,9 @@ public class HangulClock {
             hangulClock[5][0] = hangulForm[5][0];
         } else {
             p.putHangulHour(hangulClock, hangulForm, hour);
-            p.putHangulMinuteTen(hangulClock, hangulForm, minuteTen);
-            p.putHangulMinuteOne(hangulClock, hangulForm, minuteOne);
+            p.putHangulMinuteTen(hangulClock, hangulForm, minute);
+            p.putHangulMinuteOne(hangulClock, hangulForm, minute);
         }
-        printHangulClock(hangulClock);
-        System.out.println();
-        System.out.println();
-        System.out.println();
     }
 
     private String[][] createBackground() {        // 한글시계의 배경 아치원 배열 구현 6 x 6
@@ -87,9 +75,6 @@ public class HangulClock {
         now = LocalTime.now();
         hour = now.getHour();
         minute = now.getMinute();
-        minuteTotal = now.getMinute();
-        minuteTen = 0;
-        minuteOne = 0;
     }
 
     private void printHangulClock(String[][] hangulClockForm) {
