@@ -2,65 +2,13 @@ package week3.hangulClock;
 
 public class PutHangulForm {
 
-    void putHangulHour(String[][] hangulClockForm, String[][] hangulForm, int hour) {
-        switch (hour) {
-            case 1:
-            case 13:
-                hangulClockForm[0][0] = hangulForm[0][0]; //한
-                break;
-            case 2:
-            case 14:
-                hangulClockForm[0][1] = hangulForm[0][1]; //두
-                break;
-            case 3:
-            case 15:
-                hangulClockForm[0][2] = hangulForm[0][2]; //세
-                break;
-            case 4:
-            case 16:
-                hangulClockForm[0][3] = hangulForm[0][3]; //네
-                break;
-            case 5:
-            case 17:
-                hangulClockForm[0][4] = hangulForm[0][4]; //다
-                hangulClockForm[0][5] = hangulForm[0][5]; //섯
-                break;
-            case 6:
-            case 18:
-                hangulClockForm[1][0] = hangulForm[1][0]; //여
-                hangulClockForm[1][1] = hangulForm[1][1]; //섯
-                break;
-            case 7:
-            case 19:
-                hangulClockForm[1][2] = hangulForm[1][2]; //일
-                hangulClockForm[1][3] = hangulForm[1][3]; //곱
-                break;
-            case 8:
-            case 20:
-                hangulClockForm[1][4] = hangulForm[1][4]; //여
-                hangulClockForm[1][5] = hangulForm[1][5]; //덟
-                break;
-            case 9:
-            case 21:
-                hangulClockForm[2][0] = hangulForm[2][0]; //아
-                hangulClockForm[2][1] = hangulForm[2][1]; //홉
-                break;
-            case 10:
-            case 22:
-                hangulClockForm[2][2] = hangulForm[2][2]; //열
-                break;
-            case 11:
-            case 23:
-                hangulClockForm[2][2] = hangulForm[2][2]; //열
-                hangulClockForm[2][3] = hangulForm[2][3]; //한
-                break;
-            case 12:
-            case 0:
-                hangulClockForm[2][2] = hangulForm[2][2]; //열
-                hangulClockForm[2][4] = hangulForm[2][4]; //두
-                break;
+    void putHangulHour(String[][] hangulClock, String[][] hangulForm, int hour) {
+        for (HangulHour h : HangulHour.values()) {
+            if (hour == h.getHour()) {
+                hangulClock[h.getRow()][h.getColumn()] = hangulForm[h.getRow()][h.getColumn()];
+            }
         }
-        hangulClockForm[2][5] = hangulForm[2][5];
+        hangulClock[2][5] = hangulForm[2][5];
     }
 
     void putHangulMinuteTen(String[][] hangulClockForm, String[][] hangulForm, int minuteTen) {
