@@ -27,7 +27,11 @@ public class Calendar {
         System.out.print("달을 입력하세요 > ");
         int month = s.nextInt();
 
-        printCalendar(year, month);
+        if(month > 12 || month < 1) {
+            System.out.println("잘못된 입력입니다.");
+        }else{
+            printCalendar(year, month);
+        }
     }
 
     private void nowCalendar() {
