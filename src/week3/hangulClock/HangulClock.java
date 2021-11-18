@@ -9,8 +9,9 @@ public class HangulClock {
     int hour;
     int minute;
     String[][] hangulClock;
-    String[][] hangulForm = createHangulForm();
 
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RED = "\u001B[31m";
 
     public void runTimer() {
         TimerTask task = new TimerTask() {
@@ -27,7 +28,7 @@ public class HangulClock {
 
     void runClock() {
         getCurrentTime();
-        hangulClock = createBackground();
+        hangulClock = createHangulForm();
         createHangulClock();
         printHangulClock(hangulClock);
     }
@@ -36,16 +37,15 @@ public class HangulClock {
         PutHangulForm p = new PutHangulForm();
         if (hour == 0 && minute == 0) {
             // 배경에 자, 정을 출력
-            hangulClock[3][0] = hangulForm[3][0];
-            hangulClock[4][0] = hangulForm[4][0];
+            hangulClock[3][0] = ANSI_RED + hangulClock[3][0] + ANSI_RESET;
+            hangulClock[4][0] = ANSI_RED + hangulClock[4][0] + ANSI_RESET;
         } else if (hour == 12 && minute == 0) {
-            // 배경에 정, 오를 출력
-            hangulClock[4][0] = hangulForm[4][0];
-            hangulClock[5][0] = hangulForm[5][0];
+            // 배경에 정, 오를
+            hangulClock[4][0] = ANSI_RED + hangulClock[4][0] + ANSI_RESET;
+            hangulClock[5][0] = ANSI_RED + hangulClock[5][0] + ANSI_RESET;
         } else {
-            p.putHangulHour(hangulClock, hangulForm, hour);
-            p.putHangulMinuteTen(hangulClock, hangulForm, minute);
-            p.putHangulMinuteOne(hangulClock, hangulForm, minute);
+            p.putHangulHour(hangulClock, hour);
+            p.putHangulMinute(hangulClock, minute);
         }
     }
 

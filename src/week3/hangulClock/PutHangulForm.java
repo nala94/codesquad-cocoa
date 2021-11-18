@@ -2,39 +2,33 @@ package week3.hangulClock;
 
 public class PutHangulForm {
 
-    void putHangulHour(String[][] hangulClock, String[][] hangulForm, int hour) {
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RED = "\u001B[31m";
+
+    void putHangulHour(String[][] hangulClock, int hour) {
         hour = hour % 12;
         for (HangulHour h : HangulHour.values()) {
             if (hour == h.getHour()) {
-                hangulClock[h.getRow()][h.getColumn()] = hangulForm[h.getRow()][h.getColumn()];
+                hangulClock[h.getRow()][h.getColumn()] = ANSI_RED + hangulClock[h.getRow()][h.getColumn()] + ANSI_RESET;
             }
         }
-        hangulClock[2][5] = hangulForm[2][5];
+        hangulClock[2][5] = ANSI_RED + hangulClock[2][5] + ANSI_RESET;
     }
 
-    void putHangulMinuteTen(String[][] hangulClock, String[][] hangulForm, int minute) {
-        int minuteTen = minute - (minute % 10);
-        if (minuteTen == 0) {
-            return;
-        }
-        for (HangulMinute hm : HangulMinute.values()) {
-            if (minuteTen == hm.getMinute()) {
-                hangulClock[hm.getRow()][hm.getColumn()] = hangulForm[hm.getRow()][hm.getColumn()];
-            }
-        }
-        hangulClock[3][5] = hangulForm[3][5]; // 십
-    }
-
-    void putHangulMinuteOne(String[][] hangulClock, String[][] hangulForm, int minute) {
+    void putHangulMinute(String[][] hangulClock, int minute) {
         int minuteOne = minute % 10;
-        if (minute == 0) {
-            return;
+        int minuteTen = minute - minuteOne;
+        if (minute != 0) {
+            hangulClock[5][5] = ANSI_RED + hangulClock[5][5] + ANSI_RESET; // 분
         }
         for (HangulMinute hm : HangulMinute.values()) {
             if (minuteOne == hm.getMinute()) {
-                hangulClock[hm.getRow()][hm.getColumn()] = hangulForm[hm.getRow()][hm.getColumn()];
+                hangulClock[hm.getRow()][hm.getColumn()] = ANSI_RED + hangulClock[hm.getRow()][hm.getColumn()] + ANSI_RESET;
+            }
+            if (minuteTen != 0 && minuteTen == hm.getMinute()) {
+                hangulClock[hm.getRow()][hm.getColumn()] = ANSI_RED + hangulClock[hm.getRow()][hm.getColumn()] + ANSI_RESET;
+                hangulClock[3][5] = ANSI_RED + hangulClock[3][5] + ANSI_RESET; // 십
             }
         }
-        hangulClock[5][5] = hangulForm[5][5]; // 분
     }
 }
