@@ -44,7 +44,7 @@ public class HangulClock {
             hangulClock[4][0] = ANSI_RED + hangulClock[4][0] + ANSI_RESET;
             hangulClock[5][0] = ANSI_RED + hangulClock[5][0] + ANSI_RESET;
         } else {
-            p.putHangulHour(hangulClock, hour);
+            PutHangulForm.putHangulHour(hangulClock, hour);  // iv를 매개변수를 통해 사용하니까 static 메소드로 바꿈  hour:iv, hangulClock:iv
             p.putHangulMinute(hangulClock, minute);
         }
     }

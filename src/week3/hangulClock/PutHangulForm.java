@@ -5,7 +5,7 @@ public class PutHangulForm {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";
 
-    void putHangulHour(String[][] hangulClock, int hour) {
+    static void putHangulHour(String[][] hangulClock, int hour) {
         hour = hour % 12;
         for (HangulHour h : HangulHour.values()) {
             if (hour == h.getHour()) {
