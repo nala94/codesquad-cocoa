@@ -3,7 +3,13 @@ package week5.simple2DGame.entitiy;
 import week5.simple2DGame.GamePanel;
 import week5.simple2DGame.KeyHandler;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class Player extends Entity {
 
@@ -14,6 +20,7 @@ public class Player extends Entity {
         this.gp = gp;
         this.keyH = keyH;
         setDefaultValues();
+        getPlayerImage();
     }
 
     public void setDefaultValues() {
@@ -21,24 +28,88 @@ public class Player extends Entity {
         x = 100;    // 부모클래스에서 선언한 변수들
         y = 100;
         speed = 4;
+        direction = "up";
+    }
+
+    public void getPlayerImage() {
+
+        up1 = new ImageIcon("src/week5/simple2DGame/res/player/denma_up1.png").getImage();
+        up2 = new ImageIcon("src/week5/simple2DGame/res/player/denma_up2.png").getImage();
+        down1 = new ImageIcon("src/week5/simple2DGame/res/player/denma_down1.png").getImage();
+        down2 = new ImageIcon("src/week5/simple2DGame/res/player/denma_down2.png").getImage();
+        left1 = new ImageIcon("src/week5/simple2DGame/res/player/denma_left1.png").getImage();
+        left2 = new ImageIcon("src/week5/simple2DGame/res/player/denma_left2.png").getImage();
+        right1 = new ImageIcon("src/week5/simple2DGame/res/player/denma_right1.png").getImage();
+        right2 = new ImageIcon("src/week5/simple2DGame/res/player/denma_right2.png").getImage();
     }
 
     public void update() {
-        if (keyH.upPressed == true) {
+        if (keyH.upPressed) {
+            direction = "up";
             y -= speed;
-        } else if (keyH.downPressed == true) {
+        } else if (keyH.downPressed) {
+            direction = "down";
             y += speed;
-        } else if (keyH.leftPressed == true) {
+        } else if (keyH.leftPressed) {
+            direction = "left";
             x -= speed;
-        } else if (keyH.rightPressed == true) {
+        } else if (keyH.rightPressed) {
+            direction = "right";
             x += speed;
+        }
+
+        spriteCounter++;
+        if (spriteCounter > 13) {
+            if (spriteNum == 1) {
+                spriteNum = 2;
+            } else if (spriteNum == 2) {
+                spriteNum = 1;
+            }
+            spriteCounter = 0;
         }
     }
 
     public void draw(Graphics2D g2) {
-        g2.setColor(Color.white);
 
-        g2.fillRect(x, y, gp.tileSize, gp.tileSize);
+        Image image = null;
+
+        switch (direction) {
+            case "up":
+                if (spriteNum == 1) {
+                    image = up1;
+                }
+                if (spriteNum == 2) {
+                    image = up2;
+                }
+                break;
+            case "down":
+                if (spriteNum == 1) {
+                    image = down1;
+
+                }
+                if (spriteNum == 2) {
+                    image = down2;
+                }
+                break;
+            case "left":
+                if (spriteNum == 1) {
+                    image = left1;
+                }
+                if (spriteNum == 2) {
+                    image = left2;
+                }
+
+                break;
+            case "right":
+                if (spriteNum == 1) {
+                    image = right1;
+                }
+                if (spriteNum == 2) {
+                    image = right2;
+                }
+                break;
+        }
+        g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
 
     }
 
