@@ -41,8 +41,10 @@ public class GetRandomMember {
     public static void main(String[] args) throws FileNotFoundException {
         GetRandomMember grm = new GetRandomMember();
         List<String> cocoaList = createList();
+        int i = 1;
         for (String sr : cocoaList) {
-            System.out.println(1 + ". " + sr);
+            System.out.println(i + ". " + sr);
+            i++;
         }
 //        grm.printMember();
     }
