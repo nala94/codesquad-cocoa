@@ -16,10 +16,10 @@ public class TileManager {
         this.gp = gp;
 
         tile = new Tile[10];
-        mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow];
+        mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
 
         getTileImage();
-        loadMap("src/week5/simple2DGame/res/maps/map01.txt");
+        loadMap("src/week5/simple2DGame/res/maps/world01.txt");
     }
 
     public void getTileImage() {
@@ -53,11 +53,11 @@ public class TileManager {
             int col = 0;
             int row = 0;
 
-            while (col < gp.maxScreenCol && row < gp.maxScreenRow) {
+            while (col < gp.maxWorldCol && row < gp.maxWorldRow) {
 
                 String line = br.readLine();
 
-                while (col < gp.maxScreenCol) {
+                while (col < gp.maxWorldCol) {
 
                     String[] numbers = line.split(" ");
 
@@ -67,7 +67,7 @@ public class TileManager {
                     col++;
 
                 }
-                if (col == gp.maxScreenCol) {
+                if (col == gp.maxWorldCol) {
                     col = 0;
                     row++;
                 }
@@ -87,7 +87,7 @@ public class TileManager {
         int x = 0;
         int y = 0;
 
-        while (col < gp.maxScreenCol && row < gp.maxScreenRow) {
+        while (col < gp.maxWorldCol && row < gp.maxWorldRow) {
 
             int tileNum = mapTileNum[col][row];
 
@@ -95,7 +95,7 @@ public class TileManager {
             col++;
             x += gp.tileSize;
 
-            if (x == gp.screenWidth) {
+            if (x == gp.worldWidth) {
                 col = 0;
                 x = 0;
                 row++;
