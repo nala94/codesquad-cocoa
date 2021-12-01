@@ -33,6 +33,15 @@ public class TileManager {
         tile[2] = new Tile();
         tile[2].image = new ImageIcon("src/week5/simple2DGame/res/tiles/water.png").getImage();
 
+        tile[3] = new Tile();
+        tile[3].image = new ImageIcon("src/week5/simple2DGame/res/tiles/earth.png").getImage();
+
+        tile[4] = new Tile();
+        tile[4].image = new ImageIcon("src/week5/simple2DGame/res/tiles/tree.png").getImage();
+
+        tile[5] = new Tile();
+        tile[5].image = new ImageIcon("src/week5/simple2DGame/res/tiles/sand.png").getImage();
+
     }
 
     public void loadMap(String filePath) {
