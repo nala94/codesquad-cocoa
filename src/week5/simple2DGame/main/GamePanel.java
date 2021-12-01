@@ -1,10 +1,10 @@
-package week5.simple2DGame;
+package week5.simple2DGame.main;
 
 import week5.simple2DGame.entitiy.Player;
+import week5.simple2DGame.tile.TileManager;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyListener;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -20,14 +20,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     int FPS = 60;
 
+    TileManager tileManager = new TileManager(this);
     KeyHandler keyH = new KeyHandler();
     Thread gameThread;
     Player player = new Player(this, keyH);
-
-    // Set player's default position
-    int playerX = 100;
-    int playerY = 100;
-    int playerSpeed = 4;
 
     public GamePanel() {
 
@@ -90,6 +86,8 @@ public class GamePanel extends JPanel implements Runnable {
         super.paintComponent(g);
 
         Graphics2D g2 = (Graphics2D) g;
+
+        tileManager.draw(g2); //타일을 먼저 그리기
 
         player.draw(g2);
 

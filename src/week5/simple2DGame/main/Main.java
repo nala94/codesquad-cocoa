@@ -1,4 +1,4 @@
-package week5.simple2DGame;
+package week5.simple2DGame.main;
 
 import javax.swing.*;
 

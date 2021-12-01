@@ -1,15 +1,10 @@
 package week5.simple2DGame.entitiy;
 
-import week5.simple2DGame.GamePanel;
-import week5.simple2DGame.KeyHandler;
+import week5.simple2DGame.main.GamePanel;
+import week5.simple2DGame.main.KeyHandler;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 
 public class Player extends Entity {
 
