@@ -82,24 +82,31 @@ public class TileManager {
 
     public void draw(Graphics2D g2) {
 
-        int col = 0;
-        int row = 0;
-        int x = 0;
-        int y = 0;
+        int worldCol = 0;
+        int worldRow = 0;
 
-        while (col < gp.maxWorldCol && row < gp.maxWorldRow) {
+        while (worldCol < gp.maxWorldCol && worldRow < gp.maxWorldRow) {
 
-            int tileNum = mapTileNum[col][row];
+            int tileNum = mapTileNum[worldCol][worldRow];
 
-            g2.drawImage(tile[tileNum].image, x, y, gp.tileSize, gp.tileSize, null);
-            col++;
-            x += gp.tileSize;
+            int worldX = worldCol * gp.tileSize;
+            int worldY = worldRow * gp.tileSize;
+            int ScreenX = worldX - gp.player.worldX + gp.player.screenX; // 타일의 x좌표
+            int ScreenY = worldY - gp.player.worldY + gp.player.screenY; // 타일의 y좌표
 
-            if (x == gp.worldWidth) {
-                col = 0;
-                x = 0;
-                row++;
-                y += gp.tileSize;
+            if (ScreenX + gp.tileSize > 0 &&
+                    ScreenY + gp.tileSize > 0 &&
+                    ScreenX - gp.tileSize < gp.worldWidth - 2 * gp.player.screenX &&
+                    ScreenY - gp.tileSize < gp.worldHeight - 2 * gp.player.screenY) {
+
+                g2.drawImage(tile[tileNum].image, ScreenX, ScreenY, gp.tileSize, gp.tileSize, null);
+
+            }
+
+            worldCol++;
+            if (worldCol == gp.maxWorldCol) {
+                worldCol = 0;
+                worldRow++;
             }
         }
     }
